@@ -1,0 +1,65 @@
+/*
+
+Grant Foster Lab02 resume.html css sheet
+Note to self: fix comments later
+
+*/
+.subheading {
+    color: maroon;
+}
+/* This is for all classes needing centering */
+.center { 
+    text-align: center;
+}
+
+/* class call for when bold is needed */ 
+.bold {
+    font-weight: 900 ;
+}
+
+/* class call for when italics are needed */ 
+.italics {
+    font-style: italic;
+}
+/*Standardized font weighting across all headers*/
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+}
+
+/* h3 font size, but using paragraph tag */
+.standard {
+    font-size: 1.17em; 
+}
+#education {
+    clear:both
+}
+.left-side{
+    float:left; 
+    margin: 0;
+}
+
+.right-side{
+    float:right;
+    margin: 0;
+}
+/*Not messing with any of the below because I really don't want to mess up the project lol I somehow got the clears to work. */
+#line2 {
+    clear:left;
+}
+
+#line4 {
+    clear:both
+}
+#line3 {
+    clear:both
+}
+
+#workexperience {
+    clear:both
+}
+
+/* Description formatting for Work Exp and Leadership */
+.description{
+    font-size: 1.17em;
+    line-height: 1;
+}
