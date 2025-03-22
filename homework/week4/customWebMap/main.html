@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Grant's First Web Map</title>
+
+        <!--Leaflet CSS File-->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+        <!--Leaflet CSS File-->
+        <link rel="stylesheet" href="styles.css"/>
+
+        <!--Leaflet JS File-->
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin="">
+        </script>
+        <!--Leaflet JS File-->
+
+    </head>
+
+
+    <body>
+        <div id = "map" style = "width:900px; height: 580px"></div>
+        <script>
+            var map = L.map('map').fitWorld();
+            /* Set View Call returns map object that is created */
+
+            // Creating a tile layer for the map using OSM layers.  
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(map);
+            map.locate({setView: true, maxZoom: 16});
+
+            // Drawing a Circle Around Kyle Field
+            var kyleFieldCirc = L.circle([30.609927, -96.340509], {
+                color: 'red',
+                fillColor: '#f03',
+                fillOpacity: 0.5, 
+                radius: 500
+            }).addTo(map); 
+
+            // Adding a popup 
+            kyleFieldCirc.bindPopup("Horns down, gig 'em Ags!").openPopup();
+
+            // Adding an event for clicking 
+            function onMapClick(e) {
+                alert("You clicked the map at " + e.latlng);
+                }
+            map.on('click', onMapClick);
+
+            // Create custom icons for O&M 
+            var customIcons = L.Icon.extend({
+                options: {
+                    iconSize: [20, 20],
+                    iconAnchor: [10,10],
+                    popupAnchor: [-6, -5],
+                }
+            })
+
+            // Custom icon vars
+            var omBldg = new customIcons({iconUrl: 'https://pngimg.com/uploads/satellite_dish/satellite_dish_PNG8.png'})
+                acadBldg = new customIcons({iconUrl: 'https://pngimg.com/uploads/book/book_PNG51100.png'})
+                
+            // Markers with clickable popups. 
+            L.marker([30.617788, -96.336697], {icon: omBldg}).addTo(map).bindPopup("This is the O&M Building, home to the geosciences!");
+            L.marker([30.615769, -96.340841], {icon: acadBldg}).addTo(map).bindPopup("This is the academic building, home to one of TAMU's many seals.");
+        </script>
+    </body>
+</html>
